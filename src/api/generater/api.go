@@ -72,7 +72,7 @@ func main(){
 	if err != nil{
 		panic(err)
 	}
-	t,err = template.New(filePath).Parse(controllerSource)
+	t,err = template.New(filePath).Parse(notFoundSource)
 	if err != nil{
 		panic(err)
 	}
@@ -129,10 +129,41 @@ func (r *Router) Route(addr string) {
 const controllerSource = `
 package controller
 import (
+	"encoding/json"
+	"log""
 	"net/http"
+	"github.com/ryomak/go-generate-example/src/core"
 )
 
 func {{.Name}}(w http.ResponseWriter,r *http.Request){
-	
+	res,err := {{.Name}}
+	if err != nil {
+		log.Println(err)
+		w = core.SetHeader(w,http.StatusBadRequest)
+		return
+	}
+	j ,_:= json.Marshal(res)
+	w = core.SetHeader(w,http.StatusOK)
+	w.Write(j)
+}
+`
+const notFoundSource = `
+package controller
+import (
+	"encoding/json"
+	"log"
+	"net/http"
+	"github.com/ryomak/go-generate-example/src/core"
+)
+
+func {{.Name}}(w http.ResponseWriter,r *http.Request){
+	if err != nil {
+		log.Println(err)
+		w = core.SetHeader(w,http.StatusBadRequest)
+		return
+	}
+	j ,_:= json.Marshal(res)
+	w = core.SetHeader(w,http.StatusOK)
+	w.Write(j)
 }
 `
