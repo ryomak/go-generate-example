@@ -1,0 +1,4 @@
+src/controller/
+src/api/api_route.go
+.idea/
+.DS_Store
