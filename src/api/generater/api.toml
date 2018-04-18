@@ -1,0 +1,13 @@
+[[API]]
+name = "GetUser"
+endPoint = "user/:id"
+method = "GET"
+params = ["key","date"]
+
+[[API]]
+name = "Index"
+endPoint = "/"
+method = "GET"
+
+[NotFound]
+name = "NotFound"
