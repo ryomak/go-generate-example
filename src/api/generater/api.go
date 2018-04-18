@@ -130,7 +130,7 @@ const controllerSource = `
 package controller
 import (
 	"encoding/json"
-	"log""
+	"log"
 	"net/http"
 	"github.com/ryomak/go-generate-example/src/core"
 )
