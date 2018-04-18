@@ -115,7 +115,7 @@ func (r *Router) Route(addr string) {
 		{{- end}}
 	).HandlerFunc(controller.{{.Name}}).Methods("{{.Method}}")
 	{{- else}}
-		a.Path("{{.EndPoint}}").HandlerFunc(controller.{{.Name}}).Methods("{{.Method}}")
+	a.Path("{{.EndPoint}}").HandlerFunc(controller.{{.Name}}).Methods("{{.Method}}")
 	{{- end}}
 	{{- end}}
 	n := negroni.New()
